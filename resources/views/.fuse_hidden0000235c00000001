@@ -1,0 +1,18 @@
+@extends('app')
+
+@section('content')
+<div class="container">
+    <input type="hidden" name="board_id" value="{{ $board->id }}">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="panel panel-default">
+                <div class="panel-heading">Board: {{ $board->name }}</div>
+
+                <div class="panel-body">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
