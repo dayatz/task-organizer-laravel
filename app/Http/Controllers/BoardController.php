@@ -88,6 +88,17 @@ class BoardController extends Controller {
             return 'error';
         }
     }
+
+    public function editBoard($id) {
+        try {
+            $board = Board::find($id)->firstOrFail();
+            $board->name = Request::input('board_name');
+            $board->save();
+            return 'success';
+        } catch (\Exception $e) {
+            return 'error';
+        }
+    }
 }
 
 ?>

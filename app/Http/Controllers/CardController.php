@@ -44,4 +44,15 @@ class CardController extends Controller {
             return 'success';
         }
     }
+
+    public function editCard($id) {
+        try {
+            $card = Card::find($id)->firstOrFail();
+            $card->name = Request::input('card_name');
+            $card->save();
+            return 'success';
+        } catch (\Exception $e) {
+            return 'error';
+        }
+    }
 }

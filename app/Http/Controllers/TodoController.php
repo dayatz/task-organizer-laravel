@@ -52,4 +52,15 @@ class TodoController extends Controller {
             return 'error';
         }
     }
+
+    public function editTodo($id) {
+        try {
+            $todo = Todo::find($id)->firstOrFail();
+            $todo->name = Request::input('todo_name');
+            $todo->save();
+            return 'success';
+        } catch (\Exception $e) {
+            return 'error';
+        }
+    }
 }

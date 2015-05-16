@@ -12,6 +12,7 @@ var addItem = function(url, data, successEvent) {
     });
 }
 
+
 addBoard = function() {
     var data = { 'board_name': $('input[name=board_name]').val() };
     addItem('/', data, function(r){
@@ -22,6 +23,7 @@ addBoard = function() {
         }
     });
 };
+
 
 deleteBoard = function(id) {
     var d = confirm('Delete this board ?');
@@ -34,6 +36,11 @@ deleteBoard = function(id) {
             }
         });
     }
+}
+
+
+editBoard = function(id) {
+
 }
 
 // =============================================================================
@@ -79,6 +86,11 @@ deleteCard = function(id) {
             }
         });
     }
+}
+
+
+editCard = function(id) {
+
 }
 // =============================================================================
 
@@ -133,7 +145,12 @@ deleteTodo = function(id) {
 }
 
 
-// add collaborator
+editTodo = function(id) {
+
+}
+
+
+// add collaborator to board
 addCollaborator = function() {
     var data = {
         'board_id' : $('input[name=board_id]').val(),
