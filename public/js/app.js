@@ -1,4 +1,4 @@
-var addItem = function(url, data, successEvent) {
+var ajaxPost = function(url, data, successEvent) {
     var token = $('input[name=_token]').val();
     $.ajax({
         url: url,
@@ -12,10 +12,10 @@ var addItem = function(url, data, successEvent) {
     });
 }
 
-
+// ================================== BOARD ====================================
 addBoard = function() {
     var data = { 'board_name': $('input[name=board_name]').val() };
-    addItem('/', data, function(r){
+    ajaxPost('/', data, function(r){
         if (r != 'error') {
             $('.modal').modal('hide');
             var new_board = '<p style="display:none"><a href="/board/'+ r.id +'">'+ r.name +'</a></p>'
@@ -28,7 +28,7 @@ addBoard = function() {
 deleteBoard = function(id) {
     var d = confirm('Delete this board ?');
     if (d) {
-        addItem('/board/'+id+'/delete', {}, function(r){
+        ajaxPost('/board/'+id+'/delete', {}, function(r){
             if (r == 'success') {
                 window.location.replace('/');
             } else {
@@ -40,10 +40,19 @@ deleteBoard = function(id) {
 
 
 editBoard = function(id) {
+    var data = {};
+    ajaxPost('/board/'+id+'/update', data, function(r) {
+        if (r == 'success') {
 
+        } else {
+            console.log('error');
+        }
+    });
 }
 
 // =============================================================================
+
+
 
 // ================================ Card =======================================
 addCard = function() {
@@ -52,7 +61,7 @@ addCard = function() {
         'board_id' : $('input[name=board_id]').val()
     };
     console.log(data);
-    addItem('/card', data, function(r){
+    ajaxPost('/card', data, function(r){
         if (r != 'success') {
             $('.modal').modal('hide');
 
@@ -76,7 +85,7 @@ addCard = function() {
 deleteCard = function(id) {
     var del = confirm('Delete this card ?');
     if (del) {
-        addItem('/card/'+id+'/delete', {}, function(r){
+        ajaxPost('/card/'+id+'/delete', {}, function(r){
             if (r == 'success') {
                 $('.card-container[card-id='+id+']').fadeOut(function(){
                     $(this).remove();
@@ -90,9 +99,18 @@ deleteCard = function(id) {
 
 
 editCard = function(id) {
+    var data = {};
+    ajaxPost('/card/'+id+'/update', data, function(r) {
+        if (r == 'success') {
 
+        } else {
+            console.log('error');
+        }
+    });
 }
 // =============================================================================
+
+
 
 // ================================= TODO ======================================
 // add new todo to card
@@ -102,7 +120,7 @@ $(document).on('keypress', 'input[name=todo_name]', function(e) {
         var todo = t.val();
         var card_id = t.parents('.card-container').attr('card-id');
         var data = {'todo': todo, 'card_id': card_id};
-        addItem('/todo', data, function(r){
+        ajaxPost('/todo', data, function(r){
             t.val('');
 
             var added_todo = '<li style="list-style-type:none; display:none" todo-id="'+r.id+'">'+
@@ -125,7 +143,7 @@ $(document).on('change', 'input[name=check_todo]', function(){
     var done = (e.is(':checked') ? 1 : 0);
     var data = {'done': done };
 
-    addItem('/todo/' + e.val(), data, function(r){
+    ajaxPost('/todo/' + e.val(), data, function(r){
         console.log(r);
     });
 });
@@ -134,7 +152,7 @@ $(document).on('change', 'input[name=check_todo]', function(){
 deleteTodo = function(id) {
     var c = confirm('Delete this task ?');
     if (c) {
-        addItem('/todo/'+id+'/delete', {}, function(r){
+        ajaxPost('/todo/'+id+'/delete', {}, function(r){
             if (r == 'success') {
                 $('li[todo-id='+id+']').slideUp(function(){ $(this).remove });
             } else {
@@ -146,7 +164,14 @@ deleteTodo = function(id) {
 
 
 editTodo = function(id) {
+    var data = {};
+    ajaxPost('/todo/'+id+'/update', data, function(r) {
+        if (r == 'success') {
 
+        } else {
+            console.log('error');
+        }
+    });
 }
 
 
@@ -156,7 +181,7 @@ addCollaborator = function() {
         'board_id' : $('input[name=board_id]').val(),
         'user_email': $('input[name=user_email]').val()
     };
-    addItem('/collaborator', data, function(r){
+    ajaxPost('/collaborator', data, function(r){
         if (r == 'success') {
             alert('ye');
         } else if (r == 'not_found') {
@@ -166,9 +191,11 @@ addCollaborator = function() {
         }
     });
 }
+// =============================================================================
 
 
-// modal methods
+
+// ============================ OTHERS =========================================
 $('.modal').on('hidden.bs.modal', function(e) {
     $(this).find('input').val('');
 })
