@@ -52,12 +52,27 @@ return [
 			'prefix'   => '',
 		],
 
+		// local dev
+		// 'mysql' => [
+		// 	'driver'    => 'mysql',
+		// 	'host'      => env('DB_HOST', 'localhost'),
+		// 	'database'  => env('DB_DATABASE', 'task'),
+		// 	'username'  => env('DB_USERNAME', 'root'),
+		// 	'password'  => env('DB_PASSWORD', '123'),
+		// 	'charset'   => 'utf8',
+		// 	'collation' => 'utf8_unicode_ci',
+		// 	'prefix'    => '',
+		// 	'strict'    => false,
+		// ],
+
+		// openshift
 		'mysql' => [
 			'driver'    => 'mysql',
-			'host'      => env('DB_HOST', 'localhost'),
-			'database'  => env('DB_DATABASE', 'task'),
-			'username'  => env('DB_USERNAME', 'root'),
-			'password'  => env('DB_PASSWORD', '123'),
+			'host'      => env('DB_HOST', getenv('OPENSHIFT_MYSQL_DB_HOST')),
+			'database'  => env('DB_DATABASE', getenv('OPENSHIFT_APP_NAME')),
+			'username'  => env('DB_USERNAME', getenv('OPENSHIFT_MYSQL_DB_USERNAME')),
+			'password'  => env('DB_PASSWORD', getenv('OPENSHIFT_MYSQL_DB_PASSWORD')),
+			'port'      => env('DB_PORT', getenv('OPENSHIFT_MYSQL_DB_PORT')),
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
