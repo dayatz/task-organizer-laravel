@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Request;
 use App\Todo;
+use App\BoardHistory;
 use Auth;
 
 class TodoController extends Controller {
@@ -46,7 +47,17 @@ class TodoController extends Controller {
     public function deleteTodo($id) {
         try {
             $todo = Todo::find($id);
+            
+            $history = new BoardHistory;
+            $history->board_id = Request::input('board_id');
+            $history->user_id = Auth::user()->id;
+            $history->did = "deleted";
+            $history->history = "Todo";
+            $history->name = $todo->name;
+            $history->save();
+
             $todo->delete();
+
             return 'success';
         } catch (\Exception $e) {
             return 'error';

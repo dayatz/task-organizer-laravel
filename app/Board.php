@@ -13,4 +13,8 @@ class Board extends Model {
     public function collaborators() {
         return $this->hasMany('App\BoardCollaborator', 'board_id');
     }
+
+    public function histories() {
+        return $this->hasMany('App\BoardHistory', 'board_id')->orderBy('created_at', 'desc');
+    }
 }

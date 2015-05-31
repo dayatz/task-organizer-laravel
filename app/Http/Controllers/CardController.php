@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Request;
 use App\Card;
 use App\Board;
+use App\BoardHistory;
 use App\Todo;
 use Auth;
 
@@ -24,6 +25,14 @@ class CardController extends Controller {
                 $card->user_id = Auth::user()->id;
                 $card->save();
 
+                $history = new BoardHistory;
+                $history->board_id = $board_id;
+                $history->user_id = Auth::user()->id;
+                $history->did = "created a new";
+                $history->history = "Card";
+                $history->name = $card_name;
+                $history->save();
+
                 // return 'success';
                 return array(
                     'id' => $card->id,
@@ -38,9 +47,18 @@ class CardController extends Controller {
     public function deleteCard($id) {
         if (Request::ajax()) {
             $card = Card::findOrFail($id);
-            $card->delete();
 
             $todos = Todo::where('card_id', '=', $id)->delete();
+
+            $history = new BoardHistory;
+            $history->board_id = $card->board_id;
+            $history->user_id = Auth::user()->id;
+            $history->did = "deleted";
+            $history->history = "Card";
+            $history->name = $card->name;
+            $history->save();
+
+            $card->delete();
             return 'success';
         }
     }
@@ -50,6 +68,15 @@ class CardController extends Controller {
             $card = Card::find($id)->firstOrFail();
             $card->name = Request::input('card_name');
             $card->save();
+
+            $history = new BoardHistory;
+            $history->board_id = Request::input('board_id');
+            $history->user_id = Auth::user()->id;
+            $history->did = "edited";
+            $history->history = "Card";
+            $history->name = $card->name;
+            $history->save();
+
             return 'success';
         } catch (\Exception $e) {
             return 'error';

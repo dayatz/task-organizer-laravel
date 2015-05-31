@@ -1,0 +1,49 @@
+@font-face {
+    font-family: 'Gotham-Rounded-Bold';
+    src: url('../fonts/Gotham-Rounded-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Gotham-Rounded-Medium';
+    src: url('../fonts/Gotham-Rounded-Medium_21022.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Gotham-Rounded-Light';
+    src: url('../fonts/Gotham-Rounded-Light_21020.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Toms Handwriting';
+    src: url('../fonts/Toms Handwriting.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Montserrat-Bold';
+    src: url('../fonts/Montserrat/Montserrat-Bold.otf') format("truetype");
+}
+
+@font-face {
+    font-family: 'Girls Have Many Secrets';
+    src: url('../fonts/Girls Have Many Secrets.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'angelina';
+    src: url('../fonts/angelina.TTF') format('truetype');
+}
+
+@font-face {
+    font-family: 'Quicksand-Light';
+    src: url('../fonts/quicksand/Quicksand-Light.otf') format("truetype");
+}
+
+@font-face {
+    font-family: 'Quicksand-Bold';
+    src: url('../fonts/quicksand/Quicksand-Bold.otf') format("truetype");
+}
+
+@font-face {
+    font-family: 'Quicksand-Regular';
+    src: url('../fonts/quicksand/Quicksand-Regular.otf') format("truetype");
+}

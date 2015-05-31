@@ -1,0 +1,98 @@
+body{
+  background-color: #2980b9 !important;
+  
+}
+
+h1{
+  font-size: 2.50rem !important;
+  font-weight: 400px !important;
+  margin-bottom: 0 !important;
+  color: #fff;
+  font-family: 'Gotham-Rounded-Medium' !important;
+  margin-left: 50px !important;
+}
+
+span{
+  color: #fff;
+  font-size: 30px;
+  font-family: 'angelina';
+  margin-left: 225px;
+}
+
+input{
+    background-color: transparent;
+    border: none;
+    outline: 0;
+    border-bottom: 1px solid #fff;
+    margin: 0 0 5px 0;
+    height: 3rem;
+    width: 80%;
+    transition: opacity 0.3s linear;
+    margin-left: 50px;
+}
+
+::-webkit-input-placeholder {
+  color: #000;
+  opacity: 0.5;
+  -webkit-transition: opacity 0.35s ease-in-out;
+  transition: opacity 0.35s ease-in-out;
+}
+:-moz-placeholder {
+  color: #000;
+  opacity: 0.5;
+  -moz-transition: opacity 0.35s ease-in-out;
+  transition: opacity 0.35s ease-in-out;
+}
+
+:focus::-webkit-input-placeholder {
+  opacity: 0;
+  -webkit-transition: opacity 0.35s ease-in-out;
+  transition: opacity 0.35s ease-in-out;
+}
+:focus:-moz-placeholder {
+  opacity: 0;
+  -moz-transition: opacity 0.35s ease-in-out;
+  transition: opacity 0.35s ease-in-out;
+}
+
+label{
+  color: #fff !important;
+  font-family: 'Quicksand-Light' !important;
+}
+
+::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #fff;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    #fff;
+   opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    #fff;
+   opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+   color:    #fff;
+}
+
+.error{
+  margin: 20px 0 10px 50px;
+  width: 80%;
+  padding: 5px 0 5px 10px;
+  background-color: #e0e0e0;
+  color: red;
+}
+
+.centered{
+  padding-top: 50px;
+}
+.form{
+  margin-top: 100px;
+  width: 400px;
+  color: #fff;
+}
+
+.my-btn{
+  margin-top: 30px !important;
+  margin-left: 200px !important;
+}

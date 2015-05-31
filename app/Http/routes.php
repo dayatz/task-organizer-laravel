@@ -36,11 +36,12 @@ Route::post('/todo/{id}', ['uses' => 'TodoController@toggleTodo']);
 Route::post('/todo/{id}/delete', 'TodoController@deleteTodo');
 
 Route::get('/login', ['as' => 'login', 'uses' => 'AuthController@index']);
-Route::post('login', ['uses' => 'AuthController@login']);
+Route::post('login', 'AuthController@login');
+
+Route::get('/signup', ['as' => 'signup', 'uses' => 'SignupController@index']);
+Route::post('signup', 'SignupController@signup');
 
 Route::get('/logout', function(){
     Auth::logout();
     return Redirect::route('login');
 });
-
-Route::get('/signup', ['as' => 'signup', 'uses' => 'SignupController@index']);

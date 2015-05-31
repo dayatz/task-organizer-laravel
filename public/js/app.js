@@ -152,7 +152,7 @@ $(document).on('change', 'input[name=check_todo]', function(){
 deleteTodo = function(id) {
     var c = confirm('Delete this task ?');
     if (c) {
-        ajaxPost('/todo/'+id+'/delete', {}, function(r){
+        ajaxPost('/todo/'+id+'/delete', {'board_id': $('input[name=board_id]').val()}, function(r){
             if (r == 'success') {
                 $('li[todo-id='+id+']').slideUp(function(){ $(this).remove });
             } else {

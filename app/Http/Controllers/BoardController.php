@@ -4,6 +4,7 @@ use App\User;
 use App\Board;
 use App\Todo;
 use App\BoardCollaborator;
+use App\BoardHistory;
 use App\Card;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -71,17 +72,24 @@ class BoardController extends Controller {
     public function deleteBoard($id) {
         try {
             $board = Board::find($id);
+            
+            if (Auth::user()->id != $board->id) {
+                return 'error';
+            }
+
             $cards = Card::where('board_id', '=', $id);
 
             $card_ids = $cards->lists('id');
             $todos = Todo::whereIn('card_id', $card_ids);
 
             $collaborators = BoardCollaborator::where('board_id', '=', $id);
+            $histories = BoardHistory::where('board_id', '=', $id);
 
             $board->delete();
             $cards->delete();
             $todos->delete();
             $collaborators->delete();
+            $histories->delete();
 
             return 'success';
         } catch (\Exception $e) {
@@ -92,8 +100,20 @@ class BoardController extends Controller {
     public function editBoard($id) {
         try {
             $board = Board::find($id)->firstOrFail();
+            if (Auth::user()->id != $board->id) {
+                return 'error';
+            }
             $board->name = Request::input('board_name');
             $board->save();
+
+            $history = new BoardHistory;
+            $history->board_id = $id;
+            $history->user_id = Auth::user()->id;
+            $history->did = "edited";
+            $history->history = "Board";
+            $history->name = $board->name;
+            $history->save();
+
             return 'success';
         } catch (\Exception $e) {
             return 'error';

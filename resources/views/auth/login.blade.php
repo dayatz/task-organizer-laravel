@@ -1,61 +1,34 @@
-@extends('app')
+@extends('auth/auth')
 
 @section('content')
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-md-8 col-md-offset-2">
-			<div class="panel panel-default">
-				<div class="panel-heading">Login</div>
-				<div class="panel-body">
-					@if (count($errors) > 0)
-						<div class="alert alert-danger">
-							<strong>Whoops!</strong> There were some problems with your input.<br><br>
-							<ul>
-								@foreach ($errors->all() as $error)
-									<li>{{ $error }}</li>
-								@endforeach
-							</ul>
-						</div>
-					@endif
-
-					<form class="form-horizontal" role="form" method="POST" action="{{ url('login') }}">
-						<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-
-						<div class="form-group">
-							<label class="col-md-4 control-label">E-Mail Address</label>
-							<div class="col-md-6">
-								<input type="email" class="form-control" name="email" value="{{ old('email') }}">
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label class="col-md-4 control-label">Password</label>
-							<div class="col-md-6">
-								<input type="password" class="form-control" name="password">
-							</div>
-						</div>
-
-						<div class="form-group">
-							<div class="col-md-6 col-md-offset-4">
-								<div class="checkbox">
-									<label>
-										<input type="checkbox" name="remember"> Remember Me
-									</label>
-								</div>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<div class="col-md-6 col-md-offset-4">
-								<button type="submit" class="btn btn-primary">Login</button>
-
-								<a class="btn btn-link" href="{{ url('/password/email') }}">Forgot Your Password?</a>
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
+<div class="centered animated fadeInDown">
+    <div class="ui three column centered grid">
+        <div class="column">
+            <h1>Organize Your Life </h1>
+            <span class="landing">Everything start here</span>
+            <form method="POST" action="{{ url('login') }}">
+                <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+                <div class="form">
+                    <input name="email" id="username" type="text" class="validate" placeholder="Your email address" autocomplete="off">
+                    <input name="password" id="password" type="password" class="validate" placeholder="Your password" autocomplete="off">
+                    @if (count($errors) > 0)
+                    <div class="error">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li style="list-style:none"><i class="ion-close-circled"> {{ $error }}</i></li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
+                    <div class="my-btn">
+                        <button type="submit" class="ui button">Sign in</button>
+                        <span style="color: #ddd; float: right; margin-right: 30px">
+                            Don't have an account? <a href="{{ url('signup') }}" style="color: #bbb">Sign up now!</a>
+                        </span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 @endsection

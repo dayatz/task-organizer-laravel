@@ -1,0 +1,193 @@
+*, *:before, *:after{
+  box-sizing: initial !important;
+}
+
+::selection {
+    color: red;
+    background: yellow;
+}
+
+.my-nav h3{
+  color: #fff;
+  font-family: 'Quicksand-Light' !important;
+}
+
+body.open-nav .my-nav {
+  
+  width: 250px;
+}
+
+i{
+  font-size: 30px;
+}
+
+span{
+  font-family: 'Quicksand-Regular' !important;
+  
+}
+
+span a{
+  color: #3A3937;
+  text-decoration: none;
+}
+
+span a:hover{
+  border-bottom: 1px solid #3A3937;
+}
+
+input{
+    background-color: transparent;
+    border: none;
+    outline: 0;
+    border: 1px solid #fff;
+    margin: 5px 0 5px 0;
+    height: 3rem;
+    width: 90%;
+    padding: 0 0 0 20px !important;
+    transition: all 0.3s linear;
+    margin-left: 50px;
+
+}
+
+input:focus{
+    width:100%;
+}
+
+.my-nav {
+  text-align: center;
+  position: fixed;
+  padding: 10px;
+  top: 0;
+  height: 100%;
+  width: 100px;
+  background: #2980B9;
+  padding: 60px 30px 0 0px;
+  transition: width ease .5s;
+}
+
+.my-nav ul {
+  margin-top: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 50px 0 0 20px;
+}
+.my-nav ul li {
+  width:100px;
+  margin: 0 auto;
+  margin-bottom: 80px;
+  text-align: center;
+
+}
+.my-nav a {
+  color: #fff;
+  text-decoration: none;
+  transition: color ease .35s, border-bottom-color ease .35s;
+}
+.my-nav a:hover {
+  color: white;
+  border-bottom-color: white;
+}
+
+.my-nav a:focus{
+  outline: 0;
+}
+
+.my-nav a.open {
+  font-size: 1.75rem;
+  font-weight: 700;
+  border: 0;
+}
+
+#user{
+  position: relative;
+  bottom: 0;
+}
+.label{
+  color: #fff;
+  font-family: 'Quicksand-Light' !important;
+  transition: all 0.2s linear;
+}
+
+li:hover .label{
+  opacity: 1;
+}
+
+.content{
+  width: 70%;
+  padding: 40px 0 100px 250px;
+}
+
+.navbar{
+  width: 20%;
+  box-sizing: initial !important;
+}
+
+.content h2{
+  font-family: 'Quicksand-Bold' !important;
+  font-size: 25px;
+}
+
+.content h3{
+  font-size: 15px;
+  font-family: 'Quicksand-Regular' !important;
+  display: inline-block;
+}
+
+.board{
+  padding: 20px 0 0 0 !important;
+}
+
+.board a{
+  color: #000 !important;
+}
+
+.box{
+  background-color: #B3B3B3;
+  padding: 20px 10px 10px 15px;
+  min-height: 80px;
+  position: relative;
+  transition: all 0.2s linear;
+}
+
+.box a{
+  color: #000;
+}
+
+.corner-edit{
+  opacity: 0;
+  position: absolute;
+  padding: 0 0 0 5px;
+  top: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+  transition: all 0.2s linear;
+}
+
+.box i{
+  font-size: 23px;
+  margin-right: 10px;
+  color: #fff;
+}
+
+.box i:hover{
+  color: #2980B9;
+}
+
+.box:hover{
+  opacity: 0.5;
+}
+
+.box:focus{
+  outline: 0;
+}
+
+.box:hover .corner-edit{
+  opacity: 1;
+}
+.edit-modal{
+  width: 100%;
+}
+.addit .content{
+  padding: 20px 0 20px 0;
+  text-align: center;
+}
