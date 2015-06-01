@@ -190,6 +190,7 @@ input:focus{
   background-color: #9DA3AC;
   padding: 20px 20px 20px 25px;
   margin-top: 10px;
+  border-radius: 5px;
 }
 
 .card ul{
@@ -253,4 +254,16 @@ li:hover .corner-edit{
 
 .collab-btn{
   width: 83% !important;
+}
+
+.board-menu {
+  width: 180px;
+  position: fixed;
+  right: 0;
+  top: 160px;
+  z-index: 2;
+}
+.board-menu .button {
+  margin-bottom: 10px;
+  float: right;
 }

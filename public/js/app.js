@@ -17,9 +17,7 @@ addBoard = function() {
     var data = { 'board_name': $('input[name=board_name]').val() };
     ajaxPost('/', data, function(r){
         if (r != 'error') {
-            $('.modal').modal('hide');
-            var new_board = '<p style="display:none"><a href="/board/'+ r.id +'">'+ r.name +'</a></p>'
-            $(new_board).appendTo('.board-container').slideDown();
+            window.location.replace('/board/'+r.id);
         }
     });
 };
@@ -193,6 +191,12 @@ addCollaborator = function() {
 }
 // =============================================================================
 
+viewHistory = function() {
+    $('.sidebar.histories').sidebar('toggle');
+};
+collaboratorSidebar = function() {
+    $('.sidebar.collaborators').sidebar('toggle');
+}
 
 
 // ============================ OTHERS =========================================

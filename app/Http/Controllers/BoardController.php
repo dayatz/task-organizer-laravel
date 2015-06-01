@@ -18,7 +18,7 @@ class BoardController extends Controller {
 
     public function index() {
         $boards = Auth::user()->boards;
-        return view('home', ['boards' => $boards]);
+        return view('board', ['boards' => $boards]);
     }
 
     public function addBoard() {
@@ -45,7 +45,7 @@ class BoardController extends Controller {
         $board = Board::find($id);
         $x = $board->collaborators->lists('user_id');
         if (($board->user_id == Auth::user()->id) || in_array(Auth::user()->id, $x) ) {
-            return view('board', ['board' => $board]);
+            return view('boarddetail', ['board' => $board]);
         }
         return Redirect::route('home');
     }

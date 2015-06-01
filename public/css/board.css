@@ -17,8 +17,11 @@ body.open-nav .my-nav {
   width: 250px;
 }
 
-i{
-  font-size: 30px;
+button>i {
+  font-size: 22px;
+}
+li i {
+  font-size: 32px;
 }
 
 span{
