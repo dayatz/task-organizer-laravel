@@ -91,21 +91,26 @@ li:hover .label{
   opacity: 1;
 }
 
-.content{
-  width: 70%;
-  padding: 40px 0 100px 300px
+.mycontent{
+  /*width: 70%;*/
+  padding: 40px 0 100px 200px
 }
 
 .navbar{
   width: 20%;
   box-sizing: initial !important;
 }
-.content h3{
+.mycontent h3{
   font-family: 'Quicksand-Regular' !important;
 }
 
-.content h2{
+.mycontent h2{
   font-family: 'Quicksand-Bold' !important;
+  display: inline;
+  margin-right: 15px;
+}
+.mycontent span.username {
+
 }
 
 .board{
@@ -237,7 +242,7 @@ input:focus{
 }
 
 .done label{
-  color: #000 !important;
+  color: #fff !important;
 }
 .corner-edit{
   opacity: 0;
@@ -257,7 +262,7 @@ li:hover .corner-edit{
 }
 
 .board-menu {
-  width: 180px;
+  width: 45px;
   position: fixed;
   right: 0;
   top: 160px;

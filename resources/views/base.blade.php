@@ -16,7 +16,9 @@
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="navbar">
             <div class="my-nav">
-                <img src="/img/new-icon.png" style="width:100%; margin-left:15px">
+                <a href="/">
+                    <img src="/img/new-icon.png" style="width:100%; margin-left:15px">
+                </a>
                 <ul>
                     <li>
                         <a href="#" class="addboard">

@@ -17,4 +17,8 @@ class Board extends Model {
     public function histories() {
         return $this->hasMany('App\BoardHistory', 'board_id')->orderBy('created_at', 'desc');
     }
+
+    public function user() {
+        return $this->belongsTo('App\User');
+    }
 }

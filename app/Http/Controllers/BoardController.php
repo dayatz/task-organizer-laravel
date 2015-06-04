@@ -18,7 +18,11 @@ class BoardController extends Controller {
 
     public function index() {
         $boards = Auth::user()->boards;
-        return view('board', ['boards' => $boards]);
+        $invites = BoardCollaborator::where('user_id', '=', Auth::user()->id)->get();
+        return view('board', [
+            'boards' => $boards,
+            'invites' => $invites
+        ]);
     }
 
     public function addBoard() {

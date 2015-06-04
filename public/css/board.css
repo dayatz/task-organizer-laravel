@@ -116,8 +116,8 @@ li:hover .label{
 }
 
 .content{
-  width: 70%;
-  padding: 40px 0 100px 250px;
+  /*width: 70%;*/
+  padding: 40px 0 100px 200px;
 }
 
 .navbar{
@@ -193,4 +193,10 @@ li:hover .label{
 .addit .content{
   padding: 20px 0 20px 0;
   text-align: center;
+}
+
+.box .userinvite {
+  position: absolute;
+  bottom: 20px;
+  right: 15px;
 }
