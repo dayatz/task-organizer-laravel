@@ -6,6 +6,7 @@ use App\Board;
 use App\BoardHistory;
 use App\Todo;
 use Auth;
+use View;
 
 class CardController extends Controller {
     public function __construct()
@@ -34,10 +35,14 @@ class CardController extends Controller {
                 $history->save();
 
                 // return 'success';
-                return array(
-                    'id' => $card->id,
-                    'name' => $card->name
-                );
+                // return array(
+                //     'id' => $card->id,
+                //     'name' => $card->name
+                // );
+                $html = View::make('newcard', [
+                    'card' => $card
+                ]);
+                return $html;
             } catch (Exception $e) {
                 return $e;
             }

@@ -58,24 +58,12 @@ addCard = function() {
         'card_name': $('input[name=card_name]').val(),
         'board_id' : $('input[name=board_id]').val()
     };
-    console.log(data);
+    
     ajaxPost('/card', data, function(r){
-        if (r != 'success') {
-            $('.modal').modal('hide');
+        $('.modal').modal('hide');
+        $(r).appendTo('.card-container').fadeIn();
 
-            var new_card = '<div style="display:none" class="col-md-4 card-container" card-id="'+ r.id +'">'+
-                '<div class="panel panel-default">'+
-                    '<div class="panel-heading">' + r.name+
-                        '<button class="btn btn-danger btn-xs pull-right" onclick="deleteCard('+ r.id +')">x</button>'+
-                    '</div>'+
-                    '<div class="panel-body card-list">'+
-                        '<input class="form-control" type="text" name="todo_name" placeholder="Enter new task..." card-id="' + r.id + '">'+
-                    '</div>'+
-                '</div>'+
-            '</div>';
-
-            $(new_card).appendTo('.board-container').fadeIn();
-        }
+        $('input[name=card_name]').val('');
     });
 }
 

@@ -47,7 +47,7 @@
         @yield('content')
 
         <!-- new board modal -->
-        <div class="ui basic modal">
+        <div class="ui basic modal addboard">
             <div class="ui two column centered grid">
                 <div class="column">
                     <input name="board_name" id="boardname" type="text" class="validate" placeholder="Enter the board name . . .">
@@ -96,7 +96,7 @@
         
         <script>
             $(document).on('click', '.addboard', function(){
-                $('.basic.modal').modal('show');
+                $('.basic.modal.addboard').modal('show');
             });
 
             $(document).on('keypress', '#boardname', function(e){
