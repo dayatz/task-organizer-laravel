@@ -2,6 +2,6 @@
     <div class="card">
         <h4>{{ $card->name }}</h4>
         <ul class="todo-container"></ul>
-        <input type="text" name="new_todo" class="newtodo" placeholder="Add new todo...">
+        <input type="text" name="todo_name" class="newtodo" placeholder="Add new todo...">
     </div>
 </div>
