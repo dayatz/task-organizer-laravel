@@ -104,32 +104,42 @@ $(document).on('keypress', 'input[name=todo_name]', function(e) {
     var t = $(this);
     if((e.keyCode || e.which) == 13) {
         var todo = t.val();
-        var card_id = t.parents('.card-container').attr('card-id');
+        var card = t.parents('.card-item');
+        var card_id = card.attr('id');
+
         var data = {'todo': todo, 'card_id': card_id};
         ajaxPost('/todo', data, function(r){
             t.val('');
 
-            var added_todo = '<li style="list-style-type:none; display:none" todo-id="'+r.id+'">'+
-                '<input type="checkbox" name="check_todo" class="selection_checkbox" value="'+ r.id +'"> ' +
-                '<label class="selection_label"> ' + todo + '</label>' +
-                '<button class="btn btn-danger btn-xs pull-right" onclick="deleteTodo('+r.id+')">' +
-                    '<span class="i glyphicon glyphicon-trash"></span>' +
-                '</button>' +
-            '</li>';
+            var todo_container = card.find('ul');
+            $(r).appendTo(todo_container).slideDown();
 
-            $(added_todo).insertBefore('input[type=text][card-id='+ card_id +']').slideDown();
+            apply_icheck();
         });
     }
 });
 
 
 // todo check event
-$(document).on('change', 'input[name=check_todo]', function(){
+$(document).on('click', 'li.todo-item', function(){
     var e = $(this);
-    var done = (e.is(':checked') ? 1 : 0);
-    var data = {'done': done };
+    var c = e.find('.icheckbox_square-grey');
+    var i = e.find('input[type=checkbox]');
 
-    ajaxPost('/todo/' + e.val(), data, function(r){
+    if (c.hasClass('checked')) {
+        e.removeClass('done');
+        c.removeClass('checked');
+        i.prop('checked', true);
+        var done = 0;
+    } else {
+        e.addClass('done');
+        c.addClass('checked');
+        i.removeAttr('checked');
+        var done = 1;
+    }
+
+    var data = {'done': done };
+    ajaxPost('/todo/' + i.attr('id'), data, function(r){
         console.log(r);
     });
 });
@@ -195,3 +205,9 @@ $('.modal').on('hidden.bs.modal', function(e) {
     $(this).find('input:first').focus();
 });
 $("[rel='tooltip']").tooltip();
+
+function apply_icheck() {
+    $('input[name=check_todo]').iCheck({
+        checkboxClass: 'icheckbox_square-grey'
+    });
+}

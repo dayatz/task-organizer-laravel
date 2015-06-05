@@ -2,6 +2,7 @@
 
 @section('css')
 <link rel="stylesheet" href="/css/card.css">
+<link rel="stylesheet" href="/css/skins/square/grey.css">
 @endsection
 
 @section('content')
@@ -61,33 +62,20 @@
             <div class="grid-content">
                 <div class="ui grid card-container">
                     @foreach($board->cards as $card)
-                    <div class="four wide column">
+                    <div class="four wide column card-item" id="{{ $card->id }}">
                         <div class="card">
-                            <h4 style="color: #fff">{{ $card->name }}</h4>
-                            <div class="ui action input">
-                                <input type="text" placeholder="Edit here . . .">
-                                <button class="ui icon button">
-                                <i class="checkmark icon"></i>
-                                </button>
-                                <button class="ui icon button">
-                                <i class="remove icon"></i>
-                                </button>
-                            </div>
-
+                            <h4>{{ $card->name }}</h4>
                             <ul class="todo-container">
                                 @foreach ($card->todos as $todo)
-                                <li>
-                                    <div class="ui checkbox check">
-                                        <input type="checkbox" name="fun">
+                                <li class="todo-item @if ($todo->done == 1) done @endif">
+                                    <div class="todo">
+                                        <input type="checkbox" name="check_todo" class="check-todo" id="{{ $todo->id }}" @if ($todo->done == 1) checked @endif>
                                         <label>{{ $todo->name }}</label>
-                                    </div>
-                                    <div class="corner-edit">
-                                        <i class="edit icon"></i>
-                                        <i class="trash icon"></i>
                                     </div>
                                 </li>
                                 @endforeach
                             </ul>
+                            <input type="text" name="todo_name" class="newtodo" placeholder="Add new todo...">
                         </div>
                     </div>
                     @endforeach
@@ -107,6 +95,8 @@
 @endsection
 
 @section('custom_js')
+    <script src="/js/icheck.min.js"></script>
+    <script>
     $('.board-menu>.button').popup({
         position: 'left center',
         setFluidWidth: false,
@@ -121,4 +111,7 @@
             addCard();
         }
     });
+
+    apply_icheck();
+    </script>
 @endsection

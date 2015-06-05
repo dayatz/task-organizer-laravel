@@ -112,7 +112,7 @@
             $(document).on('click', '.delete', function(){
                 $('.small.modal').modal('show');
             });
-            @yield('custom_js')
         </script>
+        @yield('custom_js')
     </body>
 </html>

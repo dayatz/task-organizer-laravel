@@ -9,7 +9,7 @@
             <form method="POST" action="{{ url('login') }}">
                 <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
                 <div class="form">
-                    <input name="email" id="username" type="text" class="validate" placeholder="Your email address" autocomplete="off">
+                    <input name="email" id="username" type="text" class="validate" placeholder="Your email address" autocomplete="off" autofocus>
                     <input name="password" id="password" type="password" class="validate" placeholder="Your password" autocomplete="off">
                     @if (count($errors) > 0)
                     <div class="error">

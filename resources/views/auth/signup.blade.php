@@ -9,7 +9,7 @@
                 <form method="POST" action="{{ url('signup') }}">
                     <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 
-                    <input type="text" placeholder="Your name" name="name" autocomplete="off" value="{{ old('name') }}"/>
+                    <input type="text" placeholder="Your name" name="name" autocomplete="off" value="{{ old('name') }}" autofocus />
                     <input type="email" placeholder="Your email address" name="email"  autocomplete="off" value="{{ old('email') }}"/>
                     <input type="password" placeholder="Your password" name="password"  autocomplete="off"/>
                     <input type="password" placeholder="Re-enter your password" name="password_confirmation"  autocomplete="off"/>

@@ -46,10 +46,14 @@ class BoardController extends Controller {
     }
 
     public function boardDetail($id) {
-        $board = Board::find($id);
-        $x = $board->collaborators->lists('user_id');
-        if (($board->user_id == Auth::user()->id) || in_array(Auth::user()->id, $x) ) {
-            return view('boarddetail', ['board' => $board]);
+        try {
+            $board = Board::find($id);
+            $x = $board->collaborators->lists('user_id');
+            if (($board->user_id == Auth::user()->id) || in_array(Auth::user()->id, $x) ) {
+                return view('boarddetail', ['board' => $board]);
+            }
+        } catch (\Exception $e) {
+            return Redirect::route('home');
         }
         return Redirect::route('home');
     }

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Request;
 use App\Todo;
 use App\BoardHistory;
 use Auth;
+use View;
 
 class TodoController extends Controller {
     public function __construct()
@@ -23,10 +24,10 @@ class TodoController extends Controller {
                 $todo->save();
 
                 // return 'success';
-                return array(
-                    'id' => $todo->id,
-                    'name' => $todo->name
-                );
+                $html = View::make('newtodo', [
+                    'todo' => $todo
+                ]);
+                return $html;
             } catch (Exception $e) {
                 return $e;
             }
