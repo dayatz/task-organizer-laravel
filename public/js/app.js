@@ -37,15 +37,20 @@ deleteBoard = function(e) {
 }
 
 
-editBoard = function(id) {
-    var data = {};
-    ajaxPost('/board/'+id+'/update', data, function(r) {
-        if (r == 'success') {
-
-        } else {
-            console.log('error');
-        }
-    });
+editBoard = function(e) {
+    var id = $(e).attr('id');
+    var new_name = $(e).parent().find('input[name=edit_board]').val();
+    if (new_name) {
+        var data = {'board_name': new_name};
+        ajaxPost('/board/'+id+'/update', data, function(r) {
+            if (r) {
+                $('.board-item[id='+id+']').find('h3').text(r);
+                $('.modal.edit').modal('hide');
+            } else {
+                console.log('error');
+            }
+        });
+    }
 }
 
 // =============================================================================

@@ -55,40 +55,6 @@
             </div>
         </div>
 
-        <!-- edit board modal -->
-        <div class="ui small test modal edit transition" style="margin-top: -98px;">
-            <div class="ui action input edit-modal">
-                <input type="text" placeholder="Edit Name Here...">
-                <button class="ui icon button">
-                    <i class="ion-checkmark-round"></i>
-                </button>
-                <button class="ui icon button">
-                    <i class="ion-android-close" style="color: red"></i>
-                </button>
-            </div>
-        </div>
-
-        <!-- delete modal -->
-        <div class="ui small test modal transition hidden" style="margin-top: -98px;">
-            <div class="header">
-                Delete Your Board
-            </div>
-            <div class="addit">
-                <div class="content">
-                    <p>Are you sure you want to delete your Board?</p>
-                </div>
-            </div>
-            <div class="actions">
-                <button class="ui icon button">
-                <i class="checkmark icon"></i>
-                </button>
-                <button class="ui icon button">
-                <i class="remove icon"></i>
-                </button>
-            </div>
-        </div>
-        <!-- modal -->
-
         <script src="/js/jquery-2.1.4.min.js"></script>
         <script src="/js/bootstrap.min.js"></script>
         <script src="/js/semantic.min.js"></script>

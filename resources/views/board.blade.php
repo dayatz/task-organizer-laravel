@@ -15,7 +15,7 @@
                 <div class="box">
                     <h3>{{ $board->name }}</h3>
                     <div class="corner-edit">
-                        <i class="ion-ios-compose-outline edit-board"></i>
+                        <i class="ion-ios-compose-outline edit-board" onclick="editConfirm(event, this)" id="{{ $board->id }}"></i>
                         <i class="ion-ios-trash-outline delete-board" onclick="deleteBoardConfirm(event, this)" id="{{ $board->id }}"></i>
                     </div>
                 </div>
@@ -57,6 +57,16 @@
         </div>
     </div>
 </div>
+
+<!-- edit board modal -->
+<div class="ui small test modal edit transition" style="margin-top: -98px;">
+    <div class="ui action input edit-modal">
+        <input type="text" placeholder="Edit Name Here..." name="edit_board">
+        <button class="ui icon button saveedit" onclick="editBoard(this)">
+            <i class="ion-checkmark-round"></i>
+        </button>
+    </div>
+</div>
 @endsection
 
 @section('custom_js')
@@ -65,8 +75,22 @@
         var e = $(e);
         console.log(e.parents('.box').find('h3').text());
         var target = $('.modal.deletemodal');
+
         target.find('.board-name').text(e.parents('.box').find('h3').text());
         target.find('.okdelete').attr('id', e.attr('id'));
+        target.modal('show');
+
+        event.preventDefault();
+        event.stopPropagation();
+    }
+
+    editConfirm = function (event, e) {
+        var e = $(e);
+        var txt = e.parents('.box').find('h3').text();
+        var target = $('.modal.edit').modal('show');
+
+        target.find('input').val(txt);
+        target.find('button.saveedit').attr('id', e.attr('id'));
         target.modal('show');
 
         event.preventDefault();

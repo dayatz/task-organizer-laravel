@@ -79,7 +79,7 @@ class BoardController extends Controller {
 
     public function deleteBoard($id) {
         try {
-            $board = Board::find($id);
+            $board = Board::find($id)->firstOrFail();
             
             if (Auth::user()->id != $board->user_id) {
                 return 'not authorized';
@@ -108,8 +108,8 @@ class BoardController extends Controller {
     public function editBoard($id) {
         try {
             $board = Board::find($id)->firstOrFail();
-            if (Auth::user()->id != $board->id) {
-                return 'error';
+            if (Auth::user()->id != $board->user_id) {
+                return 'not authorized';
             }
             $board->name = Request::input('board_name');
             $board->save();
@@ -122,9 +122,9 @@ class BoardController extends Controller {
             $history->name = $board->name;
             $history->save();
 
-            return 'success';
+            return "$board->name";
         } catch (\Exception $e) {
-            return 'error';
+            return "error";
         }
     }
 }
