@@ -12,7 +12,7 @@
 <div class="ui right vertical labeled icon sidebar menu histories">
     <h2 class="item">Histories</h2>
     @foreach ($board->histories as $history)
-        <p class="item">
+        <p class="item" data-content="{{ date('F d, Y h:ia', strtotime($history->created_at)) }}">
             <b>{{ $history->user->name }}</b> has {{ $history->did }} {{ $history->history }} : <b>{{ $history->name }}</b>
         </p>
     @endforeach
@@ -20,17 +20,10 @@
 
 <!-- board collaborators -->
 <div class="ui right vertical labeled icon sidebar menu collaborators">
-    <h2 class="item">Histories</h2>
-    <p class="item">Ela</p>
-    <p class="item">Dayat</p>
-    <p class="item">Emet</p>
-    <p class="item">Ela ela ela ela ela elaaaa 4</p>
-    <p class="item">Ela ela ela ela ela elaaaa 5</p>
-    <p class="item">Ela ela ela ela ela elaaaa 6</p>
-    <p class="item">Ela ela ela ela ela elaaaa 7</p>
-    <p class="item">Ela ela ela ela ela elaaaa 8</p>
-    <p class="item">Ela ela ela ela ela elaaaa 9</p>
-    <p class="item">Ela ela ela ela ela elaaaa 10</p>
+    <h2 class="item">Collaborators</h2>
+    @foreach($board->collaborators as $collaborator)
+        <p class="item">{{ $collaborator->user->name }} ({{ $collaborator->user->email }})</p>
+    @endforeach
 
     <div class="item">
     <input type="text" placeholder="Invites by email" style="position:fixed;bottom:0;width:100%">
@@ -134,5 +127,9 @@
     });
 
     apply_icheck();
+
+    $('p.item').popup({
+       position: 'top center'
+    });
     </script>
 @endsection
