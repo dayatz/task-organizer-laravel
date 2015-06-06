@@ -10,13 +10,13 @@
     <h2>My Boards ({{count($boards)>0}})</h2>
     <div class="ui grid board">
         @foreach ($boards as $board)
-        <div class="four wide column">
+        <div class="four wide column board-item" id="{{ $board->id }}">
             <a href="/board/{{ $board->id }}" id="{{ $board->id }}">
                 <div class="box">
                     <h3>{{ $board->name }}</h3>
                     <div class="corner-edit">
-                        <i class="ion-ios-compose-outline edit"></i>
-                        <i class="ion-ios-trash-outline delete"></i>
+                        <i class="ion-ios-compose-outline edit-board"></i>
+                        <i class="ion-ios-trash-outline delete-board" onclick="deleteBoardConfirm(event, this)" id="{{ $board->id }}"></i>
                     </div>
                 </div>
             </a>
@@ -44,4 +44,33 @@
     </div>
     @endif
 </div>
+
+<div class="ui small modal transition deletemodal" style="margin-top: -97.5px;">
+    <i class="close icon"></i>
+    <div class="content">
+      <p>Are you sure you want to delete this board: <b class="board-name"></b></p>
+    </div>
+    <div class="actions">
+        <div class="ui negative button">No</div>
+        <div class="ui positive right labeled icon button okdelete" onclick="deleteBoard(this)">
+            Yes<i class="checkmark icon"></i>
+        </div>
+    </div>
+</div>
+@endsection
+
+@section('custom_js')
+<script>
+    deleteBoardConfirm = function(event, e) {
+        var e = $(e);
+        console.log(e.parents('.box').find('h3').text());
+        var target = $('.modal.deletemodal');
+        target.find('.board-name').text(e.parents('.box').find('h3').text());
+        target.find('.okdelete').attr('id', e.attr('id'));
+        target.modal('show');
+
+        event.preventDefault();
+        event.stopPropagation();
+    }
+</script>
 @endsection

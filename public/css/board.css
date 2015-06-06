@@ -1,7 +1,3 @@
-*, *:before, *:after{
-  box-sizing: initial !important;
-}
-
 ::selection {
     color: red;
     background: yellow;

@@ -81,8 +81,8 @@ class BoardController extends Controller {
         try {
             $board = Board::find($id);
             
-            if (Auth::user()->id != $board->id) {
-                return 'error';
+            if (Auth::user()->id != $board->user_id) {
+                return 'not authorized';
             }
 
             $cards = Card::where('board_id', '=', $id);

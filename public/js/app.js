@@ -23,17 +23,17 @@ addBoard = function() {
 };
 
 
-deleteBoard = function(id) {
-    var d = confirm('Delete this board ?');
-    if (d) {
-        ajaxPost('/board/'+id+'/delete', {}, function(r){
-            if (r == 'success') {
-                window.location.replace('/');
-            } else {
-                console.log(r);
-            }
-        });
-    }
+deleteBoard = function(e) {
+    var e = $(e);
+    var id = e.attr('id');
+    ajaxPost('/board/'+id+'/delete', {}, function(r){
+        if (r == 'success') {
+            $('.modal.deletemodal').modal('hide');
+            $('.board-item[id='+id+']').fadeOut(function(){ $(this).remove() });
+        } else {
+            console.log(r);
+        }
+    });
 }
 
 
@@ -68,19 +68,28 @@ addCard = function() {
 }
 
 
-deleteCard = function(id) {
-    var del = confirm('Delete this card ?');
-    if (del) {
-        ajaxPost('/card/'+id+'/delete', {}, function(r){
-            if (r == 'success') {
-                $('.card-container[card-id='+id+']').fadeOut(function(){
-                    $(this).remove();
-                });
-            } else {
-                console.log(r);
-            }
-        });
-    }
+
+deleteconfirm = function(e) {
+    var e = $(e);
+    console.log(e.parent().text());
+    var target = $('.modal.deletemodal');
+    target.find('.card-name').text(e.parent().text());
+    target.find('.okdelete').attr('id', e.attr('id'));
+    target.modal('show');
+}
+
+deleteCard = function(e) {
+    var id = $(e).attr('id');
+    ajaxPost('/card/'+id+'/delete', {}, function(r){
+        if (r == 'success') {
+            $('.modal.deletemodal').modal('hide');
+            $('.card-item[id='+id+']').fadeOut(function(){
+                $(this).remove();
+            });
+        } else {
+            console.log(r);
+        }
+    });
 }
 
 
@@ -145,17 +154,15 @@ $(document).on('click', 'li.todo-item', function(){
 });
 
 
-deleteTodo = function(id) {
-    var c = confirm('Delete this task ?');
-    if (c) {
-        ajaxPost('/todo/'+id+'/delete', {'board_id': $('input[name=board_id]').val()}, function(r){
-            if (r == 'success') {
-                $('li[todo-id='+id+']').slideUp(function(){ $(this).remove });
-            } else {
-                console.log(r);
-            }
-        });
-    }
+deleteTodo = function(event, id) {
+    ajaxPost('/todo/'+id+'/delete', {'board_id': $('input[name=board_id]').val()}, function(r){
+        if (r == 'success') {
+            $('li.todo-item[id='+id+']').slideUp(function(){ $(this).remove });
+        } else {
+            console.log(r);
+        }
+    });
+    event.stopPropagation();
 }
 
 
@@ -198,13 +205,6 @@ collaboratorSidebar = function() {
 
 
 // ============================ OTHERS =========================================
-$('.modal').on('hidden.bs.modal', function(e) {
-    $(this).find('input').val('');
-})
-.on('shown.bs.modal', function(e) {
-    $(this).find('input:first').focus();
-});
-$("[rel='tooltip']").tooltip();
 
 function apply_icheck() {
     $('input[name=check_todo]').iCheck({

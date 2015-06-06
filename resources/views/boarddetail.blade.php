@@ -64,13 +64,21 @@
                     @foreach($board->cards as $card)
                     <div class="four wide column card-item" id="{{ $card->id }}">
                         <div class="card">
-                            <h4>{{ $card->name }}</h4>
+                            <h4>{{ $card->name }}
+                                <a href="javascript:;" class="delete-card" id="{{ $card->id }}" onclick="deleteconfirm(this)">
+                                    <i class="remove circle outline icon"></i>
+                                </a>
+                            </h4>
                             <ul class="todo-container">
                                 @foreach ($card->todos as $todo)
-                                <li class="todo-item @if ($todo->done == 1) done @endif">
+                                <li class="todo-item @if ($todo->done == 1) done @endif" id="{{ $todo->id }}">
                                     <div class="todo">
                                         <input type="checkbox" name="check_todo" class="check-todo" id="{{ $todo->id }}" @if ($todo->done == 1) checked @endif>
                                         <label>{{ $todo->name }}</label>
+
+                                        <a href="javascript:;" class="delete-todo" id="{{ $todo->id }}" onclick="deleteTodo(event, {{ $todo->id }})">
+                                            <i class="trash outline icon"></i>
+                                        </a>
                                     </div>
                                 </li>
                                 @endforeach
@@ -89,6 +97,19 @@
     <div class="ui two column centered grid">
         <div class="column">
             <input name="card_name" id="card_name" type="text" class="validate" placeholder="Add new card . . .">
+        </div>
+    </div>
+</div>
+
+<div class="ui small modal transition deletemodal" style="margin-top: -97.5px;">
+    <i class="close icon"></i>
+    <div class="content">
+      <p>Are you sure you want to delete this card: <b class="card-name"></b></p>
+    </div>
+    <div class="actions">
+        <div class="ui negative button">No</div>
+        <div class="ui positive right labeled icon button okdelete" onclick="deleteCard(this)">
+            Yes<i class="checkmark icon"></i>
         </div>
     </div>
 </div>
