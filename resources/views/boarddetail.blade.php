@@ -131,7 +131,7 @@
     </div>
     <div class="actions">
         <div class="ui negative button">No</div>
-        <div class="ui positive right labeled icon button okdelete" onclick="deleteCard(this)">
+        <div class="ui positive right labeled icon button okdelete" onclick="leaveBoard({{ $board->id }})">
             Yes<i class="checkmark icon"></i>
         </div>
     </div>

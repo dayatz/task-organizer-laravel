@@ -77,6 +77,19 @@ class BoardController extends Controller {
         }
     }
 
+    public function leaveCollaborator() {
+        if (Request::ajax()) {
+            try {
+                $match = ['board_id' => Request::input('board_id'), 'user_id' => Auth::user()->id];
+                $c = BoardCollaborator::where($match);
+                $c->delete();
+                return 'success';
+            } catch (\Exception $e) {
+                return 'error';
+            }
+        }
+    }
+
     public function deleteBoard($id) {
         try {
             $board = Board::find($id)->firstOrFail();

@@ -190,14 +190,25 @@ addCollaborator = function() {
         'user_email': $('input[name=user_email]').val()
     };
     ajaxPost('/collaborator', data, function(r){
+        if (r == 'error') {
+            console.log(r);
+        } else {
+
+        }
+    });
+}
+
+leaveBoard = function(board_id) {
+    var data = {
+        'board_id': $('input[name=board_id]').val()
+    }
+    ajaxPost('/collaborator/leave', data, function(r) {
         if (r == 'success') {
-            alert('ye');
-        } else if (r == 'not_found') {
-            alert('not');
+            window.location.replace('/');
         } else {
             console.log(r);
         }
-    });
+    })
 }
 // =============================================================================
 
