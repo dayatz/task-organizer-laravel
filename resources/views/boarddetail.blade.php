@@ -20,14 +20,20 @@
 
 <!-- board collaborators -->
 <div class="ui right vertical labeled icon sidebar menu collaborators">
-    <h2 class="item">Collaborators</h2>
+    <h2 class="item">Collaborators
+        @if($board->user_id != Auth::user()->id)
+        <button class="ui inverted red button" onclick="$('.modal.leaveboard').modal('show')">
+            <i class="external share icon"></i> Leave
+        </button>
+        @else
+        <button class="ui green basic button" onclick="$('.modal.addcollaborator').modal('show')">
+            <i class="add user icon"></i> Invite
+        </button>
+        @endif
+    </h2>
     @foreach($board->collaborators as $collaborator)
         <p class="item">{{ $collaborator->user->name }} ({{ $collaborator->user->email }})</p>
     @endforeach
-
-    <div class="item">
-    <input type="text" placeholder="Invites by email" style="position:fixed;bottom:0;width:100%">
-    </div>
 </div>
 
 <div class="mycontent">
@@ -106,6 +112,32 @@
         </div>
     </div>
 </div>
+
+@if($board->user_id == Auth::user()->id)
+<div class="ui basic modal addcollaborator">
+    <div class="ui two column centered grid">
+        <div class="column">
+            <input name="card_name" id="card_name" type="text" class="validate" placeholder="Enter the user email. . .">
+        </div>
+    </div>
+</div>
+@endif
+
+@if(Auth::user()->id != $board->user_id)
+<div class="ui small modal transition leaveboard" style="margin-top: -97.5px;">
+    <i class="close icon"></i>
+    <div class="content">
+      <p>Are you sure to leave this board ?</p>
+    </div>
+    <div class="actions">
+        <div class="ui negative button">No</div>
+        <div class="ui positive right labeled icon button okdelete" onclick="deleteCard(this)">
+            Yes<i class="checkmark icon"></i>
+        </div>
+    </div>
+</div>
+@endif
+
 @endsection
 
 @section('custom_js')

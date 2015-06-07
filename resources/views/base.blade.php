@@ -35,9 +35,20 @@
                     </li>
                     
                     <li id="user">
-                        <a href="#">
+                        <a href="#" class="ui bottom left pointing dropdown" style="text-align:center">
                             <i class="ion-ios-person-outline" ></i><br>
                             <label class="label">{{ Auth::user()->name }}</label>
+                            <div class="menu">
+                                <div class="item">
+                                    <i class="edit icon"></i>
+                                    Preferences
+                                </div>
+                                <div class="divider"></div>
+                                <div class="item" onclick="location.href='/logout/'">
+                                    <i class="sign out icon"></i>
+                                    Logout
+                                </div>
+                            </div>
                         </a>
                     </li>
                 </ul>
@@ -78,6 +89,8 @@
             $(document).on('click', '.delete', function(){
                 $('.small.modal').modal('show');
             });
+
+            $('.dropdown').dropdown();
         </script>
         @yield('custom_js')
     </body>

@@ -19,6 +19,10 @@ button>i {
 li i {
   font-size: 32px;
 }
+#user{
+  position: absolute;
+  bottom: 0;
+}
 
 span{
   font-family: 'Quicksand-Regular' !important;
@@ -97,10 +101,6 @@ input:focus{
   border: 0;
 }
 
-#user{
-  position: relative;
-  bottom: 0;
-}
 .label{
   color: #fff;
   font-family: 'Quicksand-Light' !important;
