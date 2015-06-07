@@ -117,7 +117,7 @@
 <div class="ui basic modal addcollaborator">
     <div class="ui two column centered grid">
         <div class="column">
-            <input name="card_name" id="card_name" type="text" class="validate" placeholder="Enter the user email. . .">
+            <input name="user_email" id="card_name" type="text" class="validate" placeholder="Enter the user email. . .">
         </div>
     </div>
 </div>

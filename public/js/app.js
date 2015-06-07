@@ -184,19 +184,27 @@ editTodo = function(id) {
 
 
 // add collaborator to board
-addCollaborator = function() {
-    var data = {
-        'board_id' : $('input[name=board_id]').val(),
-        'user_email': $('input[name=user_email]').val()
-    };
-    ajaxPost('/collaborator', data, function(r){
-        if (r == 'error') {
-            console.log(r);
-        } else {
-
+$(document).on('keypress', 'input[name=user_email]', function(e){
+    if((e.keyCode || e.which) == 13) {
+        var t = $(this);
+        var user = t.val();
+        var board_id = $('input[name=board_id]').val();
+        if (user) {
+            var data = {
+                'user_email': user,
+                'board_id' : board_id
+            };
+            ajaxPost('/collaborator', data, function(r){
+                if (r == 'not_found') {
+                    alert('user not found');
+                } else {
+                    $('.menu.collaborators').append('<p class="item">'+r.name+' ('+r.email+')</p>');
+                    $('.modal.addcollaborator').modal('hide');
+                }
+            });
         }
-    });
-}
+    }
+});
 
 leaveBoard = function(board_id) {
     var data = {

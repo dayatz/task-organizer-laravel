@@ -67,7 +67,10 @@ class BoardController extends Controller {
                     $c->board_id = Request::input('board_id');
                     $c->user_id = $user->id;
                     $c->save();
-                    return 'success';
+                    return [
+                        'name' => $c->user->name,
+                        'email' => $c->user->email
+                    ];
                 } catch (\Exception $e) {
                     return $e;
                 }
