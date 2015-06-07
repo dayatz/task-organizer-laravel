@@ -206,6 +206,29 @@ $(document).on('keypress', 'input[name=user_email]', function(e){
     }
 });
 
+
+confirmKick = function(user_id) {
+    var target = $('.modal.kickuser');
+    target.find('.button.okkick').attr('id', user_id);
+    target.modal('show');
+}
+
+
+kickUser = function(e) {
+    var user_id = $(e).attr('id');
+    var data = {
+        'board_id': $('input[name=board_id]').val()
+    }
+    ajaxPost('/collaborator/'+user_id+'/delete', data, function(r) {
+        if (r == 'success') {
+            $('.item[id='+user_id+']').remove();
+        } else {
+            console.log(r);
+        }
+    });
+}
+
+
 leaveBoard = function(board_id) {
     var data = {
         'board_id': $('input[name=board_id]').val()

@@ -29,6 +29,7 @@ Route::post('/board/{id}/update', 'BoardController@editBoard');
 
 Route::post('/collaborator', ['uses' => 'BoardController@addCollaborator']);
 Route::post('/collaborator/leave', ['uses' => 'BoardController@leaveCollaborator']);
+Route::post('/collaborator/{id}/delete', ['uses' => 'BoardController@kickFromCollaborator']);
 
 Route::post('/card', ['as' => 'card', 'uses' => 'CardController@addCard']);
 Route::post('/card/{id}/delete', 'CardController@deleteCard');

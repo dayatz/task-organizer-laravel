@@ -32,7 +32,14 @@
         @endif
     </h2>
     @foreach($board->collaborators as $collaborator)
-        <p class="item">{{ $collaborator->user->name }} ({{ $collaborator->user->email }})</p>
+        <p class="item" id="{{ $collaborator->user_id }}">
+            {{ $collaborator->user->name }} ({{ $collaborator->user->email }})
+            @if($board->user_id == Auth::user()->id)
+            <button class="ui inverted red button" onclick="confirmKick({{ $collaborator->user_id }})">
+                kick
+            </button>
+            @endif
+        </p>
     @endforeach
 </div>
 
@@ -86,7 +93,7 @@
                         </div>
                     </div>
                     @endforeach
-                </div>
+                </div>kickuser
             </div>
         </div>
     </div>
@@ -118,6 +125,21 @@
     <div class="ui two column centered grid">
         <div class="column">
             <input name="user_email" id="card_name" type="text" class="validate" placeholder="Enter the user email. . .">
+        </div>
+    </div>
+</div>
+@endif
+
+@if(Auth::user()->id == $board->user_id)
+<div class="ui small modal transition kickuser" style="margin-top: -97.5px;">
+    <i class="close icon"></i>
+    <div class="content">
+      <p>Kick this user from board ?</p>
+    </div>
+    <div class="actions">
+        <div class="ui negative button">No</div>
+        <div class="ui positive right labeled icon button okkick" onclick="kickUser(this)">
+            Yes<i class="checkmark icon"></i>
         </div>
     </div>
 </div>
