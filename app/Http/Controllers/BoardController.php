@@ -156,6 +156,24 @@ class BoardController extends Controller {
             return "error";
         }
     }
+
+    public function clearHistory() {
+        try {
+            $id = Request::input('board_id');
+            $board = Board::findOrFail($id);
+            
+            if ($board->user_id != Auth::user()->id) {
+                return 'not authorized';
+            }
+
+            $history = BoardHistory::where('board_id', '=', $id);
+            $history->delete();
+
+            return 'success';
+        } catch (\Exception $e) {
+            return 'error';
+        }
+    }
 }
 
 ?>

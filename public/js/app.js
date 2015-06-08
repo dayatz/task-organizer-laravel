@@ -269,6 +269,19 @@ $(document).on('click', '.edit-card', function(){
 $(document).on('click', '.cancel-edit-card', function(){
     $(this).parents('.card').removeClass('editable');
 });
+
+clearHistory = function() {
+    var data = {
+        'board_id' : $('input[name=board_id]').val()
+    }
+    ajaxPost('/board/clearhistory', data, function(r){
+        if (r == 'success') {
+            $('.histories p.item').fadeOut(function(){ $(this).remove });
+        } else {
+            console.log(r);
+        }
+    });
+}
 // ============================ OTHERS =========================================
 
 function apply_icheck() {

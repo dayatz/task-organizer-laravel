@@ -26,6 +26,7 @@ Route::post('/', ['uses' => 'BoardController@addBoard']);
 Route::get('/board/{id}', ['as' => 'boardDetail', 'uses' => 'BoardController@boardDetail']);
 Route::post('/board/{id}/delete', 'BoardController@deleteBoard');
 Route::post('/board/{id}/update', 'BoardController@editBoard');
+Route::post('/board/clearhistory', 'BoardController@clearHistory');
 
 Route::post('/collaborator', ['uses' => 'BoardController@addCollaborator']);
 Route::post('/collaborator/leave', ['uses' => 'BoardController@leaveCollaborator']);

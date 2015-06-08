@@ -10,7 +10,13 @@
 
 <!-- board history -->
 <div class="ui right vertical labeled icon sidebar menu histories">
-    <h2 class="item">Histories</h2>
+    <h2 class="item">Histories
+        @if($board->user_id == Auth::user()->id)
+        <button class="ui inverted red button" onclick="$('.modal.clearhistory').modal('show')">
+            <i class="trash outline icon"></i> Clear
+        </button>
+        @endif
+    </h2>
     @foreach ($board->histories as $history)
         <p class="item" data-content="{{ date('F d, Y h:ia', strtotime($history->created_at)) }}">
             <b>{{ $history->user->name }}</b> has {{ $history->did }} {{ $history->history }} : <b>{{ $history->name }}</b>
@@ -155,6 +161,21 @@
     <div class="actions">
         <div class="ui negative button">No</div>
         <div class="ui positive right labeled icon button okkick" onclick="kickUser(this)">
+            Yes<i class="checkmark icon"></i>
+        </div>
+    </div>
+</div>
+@endif
+
+@if(Auth::user()->id == $board->user_id)
+<div class="ui small modal transition clearhistory" style="margin-top: -97.5px;">
+    <i class="close icon"></i>
+    <div class="content">
+      <p>Clear history ?</p>
+    </div>
+    <div class="actions">
+        <div class="ui negative button">No</div>
+        <div class="ui positive right labeled icon button okkick" onclick="clearHistory()">
             Yes<i class="checkmark icon"></i>
         </div>
     </div>
