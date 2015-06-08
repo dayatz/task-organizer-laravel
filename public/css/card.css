@@ -297,6 +297,16 @@ input.newtodo::-webkit-input-placeholder {
 .delete-card, .delete-todo {
   float: right;
 }
+
+.card-item:hover .delete-card {
+  opacity: 1;
+}
+
+.delete-card {
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
 .delete-card i {
   font-size: 25px;
   color: #DD8181;
@@ -312,4 +322,30 @@ input.newtodo::-webkit-input-placeholder {
 }
 .todo-item:hover .delete-todo {
   opacity: 1;
+}
+
+.card-name-title {
+  font-size: 16px;
+}
+
+.editing {
+  padding-left: 10px;
+  padding-right: 10px;
+  display: none;
+}
+.editing button {
+  padding: 5px !important;
+}
+.editing input {
+  margin: 0;
+  width: 100%;
+  padding-left: 10px !important;
+}
+
+.editable h4 {
+  display: none;
+}
+.editable .editing {
+  display: block;
+  padding: 10px;
 }

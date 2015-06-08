@@ -33,6 +33,7 @@ Route::post('/collaborator/{id}/delete', ['uses' => 'BoardController@kickFromCol
 
 Route::post('/card', ['as' => 'card', 'uses' => 'CardController@addCard']);
 Route::post('/card/{id}/delete', 'CardController@deleteCard');
+Route::post('/card/{id}/update', 'CardController@editCard');
 
 Route::post('/todo', ['as' => 'todo', 'uses' => 'TodoController@addTodo']);
 Route::post('/todo/{id}', ['uses' => 'TodoController@toggleTodo']);

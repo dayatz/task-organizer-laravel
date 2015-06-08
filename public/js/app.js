@@ -98,13 +98,19 @@ deleteCard = function(e) {
 }
 
 
-editCard = function(id) {
-    var data = {};
+saveEditCard = function(id) {
+    var card_name = $('input[id='+id+']').val();
+    var data = {
+        'card_name': card_name,
+        'board_id': $('input[name=board_id]').val()
+    }
     ajaxPost('/card/'+id+'/update', data, function(r) {
-        if (r == 'success') {
-
-        } else {
+        console.log(r);
+        if (r == 'error') {
             console.log('error');
+        } else {
+            $('.card[id='+id+']').find('span').text(card_name);
+            $('.card[id='+id+']').removeClass('editable');
         }
     });
 }
@@ -250,7 +256,19 @@ collaboratorSidebar = function() {
     $('.sidebar.collaborators').sidebar('toggle');
 }
 
+$(document).on('click', '.edit-card', function(){
+    var card = $(this).parents('.card');
+    card.addClass('editable');
 
+    var txt = card.find('h4 span').text();
+    var input = card.find('.edit-card-name');
+    input.val(txt);
+    input.select();
+});
+
+$(document).on('click', '.cancel-edit-card', function(){
+    $(this).parents('.card').removeClass('editable');
+});
 // ============================ OTHERS =========================================
 
 function apply_icheck() {

@@ -70,7 +70,7 @@ class CardController extends Controller {
 
     public function editCard($id) {
         try {
-            $card = Card::find($id)->firstOrFail();
+            $card = Card::findOrFail($id);
             $card->name = Request::input('card_name');
             $card->save();
 
@@ -82,7 +82,7 @@ class CardController extends Controller {
             $history->name = $card->name;
             $history->save();
 
-            return 'success';
+            return "$card->name";
         } catch (\Exception $e) {
             return 'error';
         }
