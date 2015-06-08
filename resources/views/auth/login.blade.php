@@ -1,4 +1,5 @@
 @extends('auth/auth')
+@section('title')Login... @endsection
 
 @section('content')
 <div class="centered animated fadeInDown">

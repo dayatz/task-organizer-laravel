@@ -1,4 +1,5 @@
 @extends('auth/auth')
+@section('title')Sign up @endsection
 
 @section('content')
 <div class="centered animated fadeIn">
@@ -25,7 +26,7 @@
                     @endif
 
                     <div class="my-btn">
-                        <button type="submit" class="ui button">Sign in</button>
+                        <button type="submit" class="ui button">Sign Up</button>
                         <span style="color: #ddd; float: right; margin-right: 30px">
                             Or <a href="{{ url('login') }}" style="color: #bbb">Login here!</a>
                         </span>

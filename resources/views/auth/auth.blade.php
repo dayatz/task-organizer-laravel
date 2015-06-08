@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Task Organizer-Login</title>
+    <title>Task Organizer - @yield('title')</title>
     <link rel="stylesheet" href="/css/semantic.min.css">
     <link rel="stylesheet" href="/css/ionicons.css">
     <link rel="stylesheet" href="/css/font.css">
