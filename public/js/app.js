@@ -99,7 +99,7 @@ deleteCard = function(e) {
 
 
 saveEditCard = function(id) {
-    var card_name = $('input[id='+id+']').val();
+    var card_name = $('input.edit-card-name[id='+id+']').val();
     var data = {
         'card_name': card_name,
         'board_id': $('input[name=board_id]').val()
