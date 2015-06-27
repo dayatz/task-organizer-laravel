@@ -1,0 +1,16 @@
+// TODO
+
+1. responsive, mobile friendly
+2. realtime system
+3. develop API
+4. mobile app
+5. user preferences
+    - change password
+    - change name
+6. user photo profile
+7. public/private card
+8. deadline date
+9. task image
+10. performance improvement
+11. superadmin
+12. login with social account

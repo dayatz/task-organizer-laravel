@@ -7,7 +7,7 @@
 @section('content')
 <div class="content">
     @if(count($boards)>0)
-    <h2>My Boards ({{count($boards)>0}})</h2>
+    <h2>My Boards ({{count($boards)}})</h2>
     <div class="ui grid board">
         @foreach ($boards as $board)
         <div class="four wide column board-item" id="{{ $board->id }}">

@@ -111,7 +111,7 @@ class BoardController extends Controller {
             $board = Board::find($id)->firstOrFail();
             
             if (Auth::user()->id != $board->user_id) {
-                return 'not authorized';
+                return "$board->id";
             }
 
             $cards = Card::where('board_id', '=', $id);
